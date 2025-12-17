@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Brahmjot Singh - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg-main: #050816;
+        --bg-alt: #0b1020;
+        --bg-card: #11172b;
+        --bg-footer: #03050b;
+        --accent: #a855f7;
+        --accent-soft: #cdb0ff;
+        --text-main: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border-subtle: #1f2937;
+        --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.5);
+        --radius-lg: 16px;
+        --radius-md: 999px;
+        --transition-fast: 0.2s ease-out;
+        --transition-med: 0.3s ease;
+        --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: var(--font-body);
+        background: radial-gradient(circle at top, #1f2937 0, #050816 45%);
+        color: var(--text-main);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color var(--transition-fast),
+          text-shadow var(--transition-fast), transform var(--transition-fast),
+          background-color var(--transition-fast);
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: #c4b5fd;
+        text-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      section {
+        padding: 2rem 2.25rem;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.9),
+          rgba(15, 23, 42, 0.5)
+        );
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(12px);
+      }
+
+      h1,
+      h2 {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.75rem;
+      }
+
+      /* INTRO */
+
+      #home {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-tagline {
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        color: var(--accent-soft);
+        font-weight: 600;
+      }
+
+      .hero-name {
+        font-size: 2.4rem;
+        font-weight: 800;
+        background: linear-gradient(120deg, var(--accent), #e5e7eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-top: 0.4rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        color: var(--text-muted);
+      }
+
+      .hero-subtitle span {
+        color: var(--accent-soft);
+        font-weight: 600;
+      }
+
+      .hero-line {
+        max-width: 32rem;
+        color: #d1d5db;
+        font-size: 0.98rem;
+        margin-top: 0.75rem;
+      }
+
+      /* PROJECTS */
+
+      #projects {
+        background: radial-gradient(circle at top left, #1f2937 0, #020617 60%);
+      }
+
+      #projects ol {
+        list-style-position: inside;
+        counter-reset: project-counter;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding-left: 0;
+      }
+
+      #projects li {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-subtle);
+        padding: 1.1rem 1.3rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.7);
+        transition: border-color var(--transition-med),
+          transform var(--transition-med), box-shadow var(--transition-med),
+          background-color var(--transition-med);
+      }
+
+      #projects li::before {
+        position: absolute;
+        top: 0.95rem;
+        right: 1.15rem;
+        font-size: 0.95rem;
+        color: var(--accent-soft);
+        opacity: 0.9;
+        font-weight: 600;
+      }
+
+      .project-title {
+        font-weight: 600;
+        font-size: 1.02rem;
+        margin-bottom: 0.2rem; /* Line 1 */
+      }
+
+      .project-description {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        margin-bottom: 0.55rem; /* Line 2 */
+      }
+
+      .project-link {
+        font-size: 0.9rem;
+        display: inline-block;
+        padding: 0.2rem 0;
+        position: relative;
+        /* Line 3 */
+      }
+
+      .project-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+        transition: width var(--transition-fast);
+      }
+
+      #projects li:hover {
+        border-color: var(--accent-soft);
+        background-color: #121b33;
+        transform: translateY(-3px);
+        box-shadow: 0 16px 35px rgba(15, 23, 42, 0.95);
+      }
+
+      #projects li:hover .project-link::after,
+      .project-link:focus-visible::after {
+        width: 100%;
+      }
+
+      /* SKILLS */
+
+      #skills {
+        background: linear-gradient(145deg, #020617, #020617 40%, #0f172a 100%);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+
+      .skill-pill {
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        padding: 0.55rem 0.8rem;
+        font-size: 0.85rem;
+        color: #e5e7eb;
+        background: radial-gradient(
+          circle at top,
+          rgba(55, 65, 81, 0.7),
+          #020617
+        );
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.8);
+        transition: border-color var(--transition-med),
+          box-shadow var(--transition-med), transform var(--transition-med),
+          background-color var(--transition-med);
+      }
+
+      .skill-pill:hover {
+        border-color: var(--accent-soft);
+        background-color: #111827;
+        box-shadow: 0 10px 25px rgba(88, 28, 135, 0.7);
+        transform: translateY(-2px);
+      }
+
+      /* CONTACT */
+
+      footer {
+        background-color: var(--bg-footer);
+        border-top: 1px solid rgba(51, 65, 85, 0.9);
+        margin-top: 1rem;
+      }
+
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.8rem 1.5rem 2.2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .footer-heading {
+        font-size: 0.95rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.75rem;
+        margin-top: 0.4rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-link {
+        padding: 0.4rem 0.1rem;
+        font-size: 0.95rem;
+        display: inline-block;
+        min-width: 44px;
+        min-height: 44px;
+        line-height: 1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-link:hover,
+      .footer-link:focus-visible {
+        color: #e9d5ff;
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.9);
+        transform: translateY(-1px);
+      }
+
+      .footer-text {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 768px) {
+        main {
+          padding: 1.8rem 1rem 2.5rem;
+          gap: 2.4rem;
+        }
+
+        section {
+          padding: 1.6rem 1.3rem;
+          border-radius: 18px;
+        }
+
+        #home {
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .hero-name {
+          font-size: 2rem;
+        }
+
+        .hero-line {
+          font-size: 0.95rem;
+        }
+
+        #projects li {
+          padding: 1rem 1.05rem 1.05rem;
+        }
+
+        #projects li::before {
+          top: 0.85rem;
+          right: 0.9rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .skill-pill {
+          font-size: 0.86rem;
+          padding: 0.55rem 0.6rem;
+        }
+
+        .footer-inner {
+          padding: 1.6rem 1rem 2rem;
+        }
+
+        .footer-links {
+          gap: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .skills-grid {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .hero-name {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- INTRO SECTION -->
+      <section id="home">
+        <div>
+          <h1 class="hero-name">BRAHMJOT SINGH</h1>
+          <p class="hero-subtitle">
+            B.E CSE 3rd Year Student | <span>Game Developer</span>
+          </p>
+        </div>
+        <p class="hero-line">
+          I design and build interactive game experiences, focusing on
+          responsive gameplay, immersive worlds, and polished user experiences
+          for PC and mobile platforms.
+        </p>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section id="projects">
+        <div class="section-header">
+          <h2>Projects</h2>
+        </div>
+
+        <ol>
+          <li>
+            <div class="project-title">Soccer Grind: 2-Player Soccer</div>
+            <p class="project-description">
+              A Unity-based local 2-player soccer game with vertical
+              split-screen, physics-driven ball movement, and
+              keyboard-controlled multiplayer competitive gameplay.
+            </p>
+            <a
+              href="https://drive.google.com/drive/folders/1oYkj60ZZ523V85nJaSmfGNrAJ51DC2rT?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+              >Try it out</a
+            >
+          </li>
+
+          <li>
+            <div class="project-title">
+              Galaxy Runner: Gravity Manipulation 2D Side Scroller
+            </div>
+            <p class="project-description">
+              A 2D side-scroller built around gravity-shifting mechanics that
+              redefine movement and level traversal.
+            </p>
+            <a
+              href="https://drive.google.com/drive/folders/1BibWU3as_o63xjjaRY_ZS_8aW79V9UK3?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+              >Try it out</a
+            >
+          </li>
+
+          <li>
+            <div class="project-title">
+              In His Steps: Story Driven 2D Platfomer
+            </div>
+            <p class="project-description">
+              A narrative-driven 2D platformer where players travel back in time
+              to experience their father's perilous journey to school,
+              navigating different terrains filled with custom enemy AI and dynamic
+              traps.
+            </p>
+            <a
+              href="https://drive.google.com/drive/folders/1ToGXDsG2EtN2XnrYxcgjAT3VcbeDS0kU?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+              >Try it out</a
+            >
+          </li>
+
+          <li>
+            <div class="project-title">
+              Cookie Smash: Touch based Snapchat Lens Game
+            </div>
+            <p class="project-description">
+              A Snapchat game featuring simple interactions, real-time feedback,
+              and fast, casual gameplay developed using Snapchat Lens Studio.
+            </p>
+            <a
+              href="https://www.snapchat.com/unlock/?type=SNAPCODE&uuid=2e6f38b671d645988cdb455ad7fb1613&metadata=01"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+              >Create a snap</a
+            >
+          </li>
+
+          <li>
+            <div class="project-title">
+              Predator Manor: Online Multiplayer Sandbox (Ongoing)
+            </div>
+            <p class="project-description">
+              A 3D online multiplayer hide-and-hunt game using Photon PUN, with
+              networked player roles, synchronized movement & counter, and
+              competitive hunt mechanics.
+            </p>
+            <!-- <a href="" class="project-link">Try it out</a> -->
+          </li>
+        </ol>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section id="skills">
+        <div class="section-header">
+          <h2>Skills</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-pill">Unity Engine (2D, 3D, AR, VR)</div>
+          <div class="skill-pill">Photon Unity Networking (PUN)</div>
+          <div class="skill-pill">Unreal Engine (3D)</div>
+          <div class="skill-pill">Figma</div>
+          <div class="skill-pill">Blender</div>
+          <div class="skill-pill">Autodesk Maya</div>
+          <div class="skill-pill">Adobe Photoshop</div>
+          <div class="skill-pill">Snapchat Lens Studio</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- CONTACT SECTION -->
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-heading">Let's Connect</p>
+        <div class="footer-links">
+          <a href="mailto:brhmsingh.5@gmail.com" class="footer-link">Email</a>
+          <a
+            href="https://www.linkedin.com/in/brahmjotsinghz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            >LinkedIn</a
+          >
+        </div>
+        <p class="footer-text">
+          Pre-final year game development student &mdash; open to internships,
+          collaborations, and game jams.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
