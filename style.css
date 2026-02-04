@@ -63,9 +63,8 @@ ul {
   margin-bottom: 3rem;
   text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: table; /* Allows margin auto to work for centering while keeping underline width relative to text */
+  margin: 0 auto 3rem auto;
   text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
 }
 
@@ -82,7 +81,9 @@ ul {
 
 /* Button Base Styles */
 .btn {
-  display: inline-block;
+  display: block;
+  width: 100%;
+  text-align: center;
   padding: 12px 30px;
   border-radius: 5px;
   font-family: var(--font-heading);
@@ -141,7 +142,7 @@ ul {
   background: transparent;
   border: 2px solid var(--secondary-color);
   color: var(--secondary-color);
-  margin-left: 20px;
+  /* no margin-top needed if we use gap in parent, but removing margin-left is key */
 }
 
 .btn-secondary:hover {
@@ -167,6 +168,14 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative; /* For mobile menu positioning context if needed */
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
 }
 
 .logo {
@@ -234,6 +243,13 @@ ul {
   color: var(--secondary-color);
   margin-bottom: 20px;
   text-shadow: 0 0 10px rgba(189, 0, 255, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: auto;
 }
 
 .hero-description {
@@ -324,6 +340,7 @@ ul {
   margin-bottom: 20px;
   border-left: 3px solid var(--secondary-color);
   padding-left: 15px;
+  text-align: left;
 }
 
 .skill-chips {
@@ -608,11 +625,57 @@ ul {
   .hero-role {
     font-size: 1.5rem;
   }
-  .section-title {
-    font-size: 2rem;
+  /* Hero Buttons Stack on Mobile */
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
   }
+
   .nav-links {
     display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Compact Mobile Menu */
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Below header */
+    right: 20px;
+    width: 250px; /* Compact width */
+    height: auto; /* Auto height based on content */
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    z-index: 1001;
+  }
+
+  /* Close Button in Menu */
+  .nav-close-btn {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links li a {
+    font-size: 1.1rem;
+    display: block;
   }
 }
 
