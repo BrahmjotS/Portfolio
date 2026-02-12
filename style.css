@@ -303,7 +303,12 @@ ul {
   margin: 0 auto;
 }
 
+.about-text {
+  text-align: justify;
+}
+
 .about-text p {
+  text-align: justify;
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -704,4 +709,5 @@ ul {
 .contact-card:hover i {
   transform: scale(1.2);
 }
+
 
